@@ -1,0 +1,33 @@
+{
+  "name": "CXYNetwork",
+  "version": "0.1.0",
+  "summary": "A short description of CXYNetwork.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/avanlanching/CXYNetwork",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "avanlanching": "18269285634@163.com"
+  },
+  "source": {
+    "git": "https://github.com/avanlanching/CXYNetwork.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CXYNetwork/Classes/**/**/*.{h,m}",
+  "dependencies": {
+    "AFNetworking": [
+
+    ],
+    "ReactiveObjC": [
+
+    ],
+    "CTMediator": [
+
+    ]
+  }
+}

@@ -7,12 +7,37 @@
 //
 
 #import "CXYAppDelegate.h"
+#import "CTMediator+CXYLogin.h"
+#import "CXYNetworkDetection.h"
+
 
 @implementation CXYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[CTMediator sharedInstance] loginWithParam:@{@"value":@"hello word"} complete:^(id<CXYNetworkDataProtocol>  _Nonnull object) {
+        NSLog(@"%@", object);
+    }];
+    
+    RACSignal *single = [[CXYNetworkDetection singletons] start];
+    [single.replayLast subscribeNext:^(id  _Nullable x) {
+        AFNetworkReachabilityStatus status = [((NSNumber *)x) integerValue];
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"AFNetworkReachabilityStatusUnknown");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                NSLog(@"AFNetworkReachabilityStatusNotReachable");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+                break;
+            default:
+                NSLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+                break;
+        }
+    }];
+    
     return YES;
 }
 
